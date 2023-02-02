@@ -9,9 +9,9 @@
    @csrf
   <div class="mb-3 mt-4">
 
-  <select class="form-select" name="song_id">
+  <select class="form-select" name="cate_id">
        <option Value="">Select a Category</option> 
-       @foreach($song as $finals)
+       @foreach($category as $finals)
         <option value="{{$finals->id}}">{{$finals->name}}</option> 
         @endforeach
     </select>
@@ -60,6 +60,7 @@
                     </button>
                 </span>
             </div>
+            <br />
         </div>
 <div class="col-10" style="margin-left:400px;">
 <div class="form-group ">

@@ -45,6 +45,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+       
         $product= new Product;
         if($request->hasFile('photo'))
         {
@@ -91,8 +92,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+      
         $product = Product::find($id);
-        //dd( $product);
+        // dd( $product);
        return view('product.edit',compact('product'));
     }
 
@@ -121,8 +123,9 @@ class ProductController extends Controller
             $product->photo =$filename;
         }
        
-        $product->cate_id = $request->input('cate_id');
+       $product->cate_id = $request->input('cate_id');
         //dd($product);
+        $product->name = $request->input('name');
         $product->product_slug = $request->input('product_slug');
         $product->short_description= $request->input('short_description');
         $product->status= $request->input('status')== true ? '1' : '0';;

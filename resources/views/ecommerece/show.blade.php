@@ -8,7 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Slug</th>
+                {{-- <th>Slug</th> --}}
                 <th>Description</th>               
                 <th>Photo</th>
                 <th>Action</th>
@@ -19,13 +19,14 @@
             <tr>
           <td>{{$finals->id}}</td>
           <td>{{$finals->name}}</td>
-          <td>{{$finals->slug}}</td>
+          {{-- <td>{{$finals->slug}}</td> --}}
           <td>{{$finals->description}}</td> 
                 
           <td><img src="{{asset('assets/uploads/categoryimage/'.$finals->photo)}}" style="height:70px;"></td>
           <td>
-          <a href="{{ url('edit/'.$finals->id)}}" class="btn btn-info">Edit</a> </td>
-          <td> <a href="{{ url('delete/'.$finals->id) }}" onclick="return confirm('Are you sure you want to delete this item?');"  class="btn btn-danger btn-sm">Delete</a>
+          <a href="{{ url('edit/'.$finals->id)}}" class="btn btn-info">Edit</a></td>
+          <td>
+          <a href="{{ url('delete/'.$finals->id) }}" onclick="return confirm('Are you sure you want to delete this item?');"  class="btn btn-danger">Delete</a>
         </td>   
         </tr>
             @endforeach

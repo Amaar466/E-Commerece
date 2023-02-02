@@ -53,7 +53,7 @@ welcome to home;
     
     <div class="col-md-4 owl-theme mt-5">
         <div class="item">
-            <div class="card" style="width:280px;height:420px">
+            <div class="card" style="width:300px;height:420px">
               <a href="{{ route('view.category', [$finals->id])}}"> <img class="card-img-top" src="{{asset('assets/uploads/categoryimage/'.$finals->photo)}}" alt="Card image" style="width:100%"></a>
               <div class="card-body">
                 <h4 class="card-title">{{$finals->name}}</h4>

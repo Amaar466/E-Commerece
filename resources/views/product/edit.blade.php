@@ -7,8 +7,7 @@
 <form method="post" action="{{url('proupdate/'.$product->id)}}" enctype="multipart/form-data">
    @csrf
   <div class="mb-3 mt-4">
-
-  <select class="form-select" name="cate_id">
+  <select class="form-select" name="cate_id">  
        <option Value="">Select a Category</option> 
      
    
