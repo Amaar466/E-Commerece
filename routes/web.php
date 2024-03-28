@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,7 @@ Route::post('/add_to_cart', [CartController::class, 'store']);
 Route::get('/loaded_to_cart', [CartController::class, 'cartcount']);
 Route::get('/checkout',[checkoutController::class,'checkout']);
 Route::post('/place-order',[checkoutController::class,'placeorder']);
- 
+
 
 Auth::routes();
 
