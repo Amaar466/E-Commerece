@@ -69,14 +69,14 @@ class CheckoutController extends Controller
                    'order_id'=> $finals->id,
                    'product_id'=> $finals->product_id,
                    'user_id' => auth()->id(),
-                   'price'=> $finals->Product->price,           
-  
+                   'price'=> $finals->Product->price,
+
                ]);
               }
        return redirect('/')->with('status',"Order Placed Successfully");
-      
 
-       
+
+
         //return redirect('/checkout');
     }
 
