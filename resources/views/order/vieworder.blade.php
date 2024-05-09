@@ -13,8 +13,8 @@
     }
 </style>
               <div class="container mt-4">
-                 
-                   
+
+
                   <div class="row">
                       <div class="col-md-7">
                           <div class="card">
@@ -66,7 +66,7 @@
                                           <label for="PinCOde">PinCode</label>
                                           <!-- <input type="text" class="form-control" name="post_code" placeholder="Enter your PinCode "> -->
                                           <div class="border">{{$orders->post_code}}</div>
-                                      </div> 
+                                      </div>
                                   </div>
                               </div>
                           </div>
@@ -86,23 +86,23 @@
                                               </tr>
                                           </thead>
                                           <tbody>
-                                         
-                                                <tr>                                           
+
+                                                <tr>
                                                     <td>{{$product->product_slug}}</td>
                                                     <td>{{$product->quantity}}</td>
                                                     <td>{{$product->price}}</td>
                                                     <td></td>
                                                 </tr>
-                                                
+
                                           </tbody>
                                         </table>
                                         <h4 class="px-2">Grand Total::<span class="float-end">{{$orders->total_price}}</span></h4>
                                   <label for="">Order Status</label>
                                   <form action="{{url('/admin/update-orders/'.$orders->id)}}" method="post">
                                     @csrf
-                                  <select name="order_status" value="{{$product->status}}" >
-                                      <option value="{{$orders->status =='0'? 'selected':''}}">Pending</option>
-                                      <option value="{{$orders->status =='1'? 'selected':''}}">Complete</option>
+                                  <select name="order_status" >
+                                      <option value="0" {{$orders->status =='0'? 'selected':''}}>Pending</option>
+                                      <option value="1" {{$orders->status =='1'? 'selected':''}}>Complete</option>
                                   </select>
                                   <input type="submit" class="btn btn-success">
                                   </form>
@@ -111,9 +111,9 @@
                                   <!-- <input type="submit" value="Place order" class="btn btn-primary w-100">-->
                               </div>
                           </div>
-                      </div> 
+                      </div>
                   </div>
-                  
-              </div>  
-      
+
+              </div>
+
 @endsection

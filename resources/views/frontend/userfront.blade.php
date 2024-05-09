@@ -1,7 +1,7 @@
 @extends('layout.front')
 @section('title')
 
-welcome to home;
+welcome to home
 @endsection
 
 @section('content')
@@ -30,7 +30,7 @@ welcome to home;
 		  <div class="carousel-item">
 			<img src="images/img3.jpg" class="d-block w-100 vh-100" alt="...">
 			<div class="carousel-caption d-none d-md-block">
-     
+
 			</div>
 		  </div>
 		</div>
@@ -44,13 +44,13 @@ welcome to home;
 		</button>
 	  </div>
 	  <!------End Of Courosul--------->
-    
+
 	  <div class="container">
     <h1 class="mt-5">Trending All Category</h1>
     <div class="row">
 
      @foreach($trending_category as $finals)
-    
+
     <div class="col-md-4 owl-theme mt-5">
         <div class="item">
             <div class="card" style="width:300px;height:420px">
@@ -64,7 +64,7 @@ welcome to home;
             </div>
         </div>
     </div>
-    @endforeach 
+    @endforeach
 
     </div>
     </div>
@@ -77,7 +77,7 @@ welcome to home;
         <div class="item">
         <div class="card" style="width:280px">
        <a href="{{ route('view.product', [$finals->id])}}">  <img class="card-img-top"  src="{{asset('assets/uploads/productimage/'.$finals->photo)}}" alt="Card image" style="width:100%"></a>
-        
+
         <div class="card-body">
           <h4 class="card-title">{{$finals->product_slug}}</h4>
           <p class="card-text">{{$finals->short_description}}</p>
@@ -95,5 +95,5 @@ welcome to home;
 
 
 
-	
+
 @endsection

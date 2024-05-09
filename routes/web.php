@@ -67,6 +67,7 @@ Route::post('/savedata',[CategoryController::class,'store']);
 Route::get('/addcart', [CartController::class, 'viewcart'])->name('view.cart');
 Route::post('/add_to_cart', [CartController::class, 'store']);
 Route::get('/loaded_to_cart', [CartController::class, 'cartcount']);
+Route::get('/addcart/{id}',[CartController::class,'destroy']);
 Route::get('/checkout',[checkoutController::class,'checkout']);
 Route::post('/place-order',[checkoutController::class,'placeorder']);
 

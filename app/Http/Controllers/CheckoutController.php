@@ -8,6 +8,9 @@ use App\Models\Order;
 use Cart;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+// use Shoppingcart\Facades\Cart;
+
 
 
 class CheckoutController extends Controller
@@ -17,9 +20,10 @@ class CheckoutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function checkout(){
-        $cart=Addcart::where('user_id', Auth::id())->get();
-        return view('/product.cartcheckout',compact('cart'));
+    public function checkout()
+    {
+        $cart = Addcart::where('user_id', Auth::id())->get();
+        return view('/product.cartcheckout', compact('cart'));
     }
 
     /**
@@ -42,38 +46,38 @@ class CheckoutController extends Controller
     {
         //dd($request->all());
         $order = new Order();
-       $order->user_id = auth::id();
-        $order->fname= $request->input('fname');
-        $order->lname= $request->input('lname');
-        $order->email= $request->input('email');
-        $order->phone_number= $request->input('phone_number');
-        $order->address= $request->input('address');
-        $order->city= $request->input('city');
-        $order->state= $request->input('state');
-        $order->country= $request->input('country');
-        $order->post_code= $request->input('post_code');
-        $total= 0;
-        $cart_total= Cart::where('user_id', auth::id())->get();
-        foreach( $cart_total as $prod)
-        {
-            $total +=$prod->product->total_price;
+        $order->user_id = auth::id();
+        $order->fname = $request->input('fname');
+        $order->lname = $request->input('lname');
+        $order->email = $request->input('email');
+        $order->phone_number = $request->input('phone_number');
+        $order->address = $request->input('address');
+        $order->city = $request->input('city');
+        // $order->state= $request->input('state');
+        $order->country = $request->input('country');
+        $order->post_code = $request->input('post_code');
+        $total = 0;
+        // $order->total_price = $total;
+
+        // return view('product.plceholder');
+        $cart = Addcart::where('user_id', Auth::id())->get();
+        // dd($cart);
+        foreach ($cart as $finals) {
+            OrderItem::create([
+                'order_id' => $finals->id,
+                'product_id' => $finals->product_id,
+                'user_id' => auth()->id(),
+                'price' => $finals->Product->price,
+                $total += $finals->Product->price * $finals->Product->quantity
+
+            ]);
         }
         $order->total_price = $total;
-        $order->tracking_no= 'Amaar'.rand(1111,9999);
-       $order->save();
-  // return view('product.plceholder');
-        $cart=Addcart::where('user_id',Auth::id())->get();
-        // dd($cart);
-           foreach ($cart as $finals) {
-               OrderItem::create([
-                   'order_id'=> $finals->id,
-                   'product_id'=> $finals->product_id,
-                   'user_id' => auth()->id(),
-                   'price'=> $finals->Product->price,
 
-               ]);
-              }
-       return redirect('/')->with('status',"Order Placed Successfully");
+        $order->tracking_no = 'Amaar' . rand(1111, 9999);
+
+        $order->save();
+        return redirect('/')->with('status', "Order Placed Successfully");
 
 
 

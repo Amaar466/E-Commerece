@@ -74,22 +74,36 @@
                                                   <th>Name</th>
                                                   <th>Quantity</th>
                                                   <th>Price</th>
+                                                  {{-- <th>Total</th> --}}
                                               </tr>
                                           </thead>
                                           <tbody>
-                                          @foreach($cart as $finals)
-                                                <tr>                                           
+                                            @php
+                                            $totalPrice = 0;
+                                            @endphp
+                                            @foreach($cart as $finals)
+                                                <tr>
                                                     <td>{{$finals->Product->product_slug}}</td>
                                                     <td>{{$finals->Product->quantity}}</td>
                                                     <td>{{$finals->Product->price}}</td>
-                                                    <td></td>
+                                                    <td>{{$finals->Product->price * $finals->Product->quantity}}</td>
+                                                    @php
+                                                    $totalPrice += $finals->Product->price * $finals->Product->quantity;
+                                                    @endphp
                                                 </tr>
-                                                @endforeach
-                                          </tbody>
-                                          
-                                    
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="text-end"><strong>Total Price:</strong></td>
+                                                <td>{{$totalPrice}}</td>
+                                            </tr>
+                                        </tfoot>
+
+
+
                                         </table>
-                                 
+
                                   </div>
                                   <hr>
                                   <input type="submit" value="Place order" class="btn btn-primary w-100">
@@ -98,6 +112,6 @@
                       </div>
                   </div>
                   </form>
-              </div>  
-      
+              </div>
+
 @endsection

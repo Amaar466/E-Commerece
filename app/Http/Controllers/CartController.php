@@ -37,7 +37,7 @@ class CartController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $product_id = $request->input('product_id');      
+        $product_id = $request->input('product_id');
         if (Auth::check()) {
             $prod_check = Product::where('id', $product_id)->first();
             //dd($prod_check);
@@ -45,12 +45,12 @@ class CartController extends Controller
                 if (Addcart::where('product_id', $product_id)->where('user_id', Auth::id())->exists()) {
                     //dd($prod_check);
                     return response()->json(['status' => $prod_check->name . " Already Added to Cart"]);
-                } 
+                }
                  else{
             $cart = new Addcart();
             $cart->user_id = Auth::id();
             $cart->product_id = $request->input('product_id');
-            
+
             $cart->save();
             //dd($cart);
             return response()->json(['status' => $prod_check->name . " Added to Cart"]);
@@ -59,7 +59,7 @@ class CartController extends Controller
 }
         else{
             return redirect('/login');
-        }    
+        }
     }
 
     /**
@@ -104,7 +104,10 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart = Addcart::find($id);
+
+     $cart->delete();
+     return redirect('addcart');
     }
     public function cartcount(){
         $cartcount=Addcart::where('user_id',Auth::id())->count();
@@ -116,5 +119,5 @@ class CartController extends Controller
             $cart = Addcart::where('user_id', Auth::id())->get();
             return view("product.addcart" ,compact('cart'));
         }
-        
+
 }

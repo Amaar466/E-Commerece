@@ -81,9 +81,7 @@ class OrderController extends Controller
     {
         //dd($request->all());
         $orders = Order::find($id);
-        
         $orders->status=$request->input('order_status');
-        dd($orders->status);
         $orders->update();
         return redirect('/dashboard')->with('status',"Order Updated Successfully");
     }
